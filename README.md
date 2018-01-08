@@ -1,24 +1,32 @@
-# README
+# Content Scraper
 
-This README would normally document whatever steps are necessary to get the
-application up and running.
+This is a simple Content Scraper to store the content that is found inside the tags h1, h2 and h3 and the links, using rails as an API only.
 
-Things you may want to cover:
+## Getting Setup
 
-* Ruby version
+Clone the repo:
 
-* System dependencies
+    git clone REPO && cd REPO
+    
+Install the libraries and setup the database:
 
-* Configuration
+    bundle && bundle exec rails db:setup
 
-* Database creation
+## Scraping pages
 
-* Database initialization
+Turn on the rails server:
 
-* How to run the test suite
+    bundle exec rails s
 
-* Services (job queues, cache servers, search engines, etc.)
+List pages which have been scrapped
 
-* Deployment instructions
+    curl http://127.0.0.1:3000/v1/page_contents
 
-* ...
+Fetch content of a page
+
+    curl -data="url=https://www.bbc.co.uk/news/av/uk-england-cornwall-42591096/missing-cornwall-cat-winston-found-after-15-years" http://127.0.0.1:3000/v1/page_contents
+
+
+## Running the specs
+
+    bundle exec rails test
