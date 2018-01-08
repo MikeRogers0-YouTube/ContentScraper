@@ -12,11 +12,18 @@ class V1::PageContentsControllerTest < ActionDispatch::IntegrationTest
     get lookup_v1_page_contents_path(url: page_contents(:facebook).url)
     assert_response :success
 
-    # TODO - Return the JSON blob perhaps?
+    assert_equal JSON.parse(response.body), page_contents(:facebook).content, "Response is an expected JSON object"
   end
 
   def known_url
     'https://mikerogers.io/2018/01/05/i18n-rails-validations.html'
+  end
+
+  def known_content
+    { 
+      h1: ['Google'],
+      a: ['http://google.com/search', 'http://google.com/login']
+    }
   end
 
   test '.lookup - Stores a valid page in the database' do
@@ -24,6 +31,7 @@ class V1::PageContentsControllerTest < ActionDispatch::IntegrationTest
 
     get lookup_v1_page_contents_path(url: known_url)
     assert_response :success
+    assert_equal JSON.parse(response.body), {url: known_url, content: known_content }, 'Response is an expected JSON object'
 
     assert_equal PageContent.where(url: known_url).count, 1, 'Page is in the database'
   end
