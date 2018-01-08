@@ -6,11 +6,11 @@ class V1::PageContentsController < ApplicationController
   def lookup
     @resource = PageContent.find_or_initialize_by(url: url_param)
 
-    if @resource.valid?
-      render json: @resource
-    else
-      render :not_found
-    end
+    # If the resource is saved already, return it's JSON. Otherwise attempt to save
+    # it, which will attempt to index the pages content.
+    return render json: @resource if @resource.persisted? || @resource.save
+
+    render :not_found
   end
 
   private
