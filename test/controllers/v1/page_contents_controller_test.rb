@@ -12,7 +12,7 @@ class V1::PageContentsControllerTest < ActionDispatch::IntegrationTest
     get lookup_v1_page_contents_path(url: page_contents(:facebook).url)
     assert_response :success
 
-    assert_equal JSON.parse(response.body), page_contents(:facebook).content, 'Response is an expected JSON object'
+    assert_equal JSON.parse(response.body)['content'], page_contents(:facebook).content, 'Response is an expected JSON object'
   end
 
   def known_url
@@ -20,9 +20,11 @@ class V1::PageContentsControllerTest < ActionDispatch::IntegrationTest
   end
 
   def known_content
-    { 
-      h1: ['Google'],
-      a: ['https://google.com/search', 'https://google.com/login']
+    {
+      h1:['Using I18n in Rails Validations'],
+      h2: ['Keep things standard'],
+      h3: [],
+      a: ['/', 'https://github.com/MikeRogers0', 'https://www.instagram.com/mikerogers0/', 'https://twitter.com/mikerogers0', 'https://github.com/svenfuchs/rails-i18n/blob/e489753e293e77a6c7bee25a5a7e4c36a22d897b/rails/locale/en.yml#L111', 'https://twitter.com/MikeRogers0', 'mailto:me+blog@mikerogers.io?subject=Using+I18n+in+Rails+Validations', 'https://opensource.org/licenses/MIT', 'https://github.com/MikeRogers0/MikeRogersIO/blob/master/source/blog/2018-01-05-i18n-rails-validations.html.md', '/', '/rss.xml', '/posts.html', 'https://github.com/MikeRogers0/MikeRogersIO']
     }
   end
 
@@ -31,13 +33,15 @@ class V1::PageContentsControllerTest < ActionDispatch::IntegrationTest
 
     get lookup_v1_page_contents_path(url: known_url)
     assert_response :success
-    assert_equal JSON.parse(response.body), {url: known_url, content: known_content }, 'Response is an expected JSON object'
 
-    assert_equal PageContent.where(url: known_url).count, 1, 'Page is in the database'
+    assert_equal JSON.parse(response.body)['url'], known_url
+    assert_equal JSON.parse(response.body, symbolize_names: true)[:content], known_content
+
+    assert_equal PageContent.where(url: known_url).count, 1, 'Page was added to the database'
   end
 
   test '.lookup - Will gracefully 404 when a URL does not exist' do
-    get lookup_v1_page_contents_path(url: 'https://www.mikerogers.io/i-dont-exist')
+    get lookup_v1_page_contents_path(url: 'https://mikerogers.io/i-dont-exist')
     assert_response :not_found
   end
 end

@@ -8,7 +8,7 @@ class V1::PageContentsController < ApplicationController
 
     # If the resource is saved already, return it's JSON. Otherwise attempt to save
     # it, which will attempt to index the pages content.
-    return render json: @resource if @resource.persisted? || @resource.save
+    return render json: @resource.to_json(only: [:url, :content]) if @resource.persisted? || @resource.save
 
     head :not_found
   end

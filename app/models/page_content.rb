@@ -5,7 +5,7 @@ class PageContent < ApplicationRecord
 
   # Nokogiri to store a JSON blob of all h1, h2, h3 & a[href] contents.
   def store_content!
-    content = {
+    self.content = {
       h1: parsed_response.search('h1').collect(&:text),
       h2: parsed_response.search('h2').collect(&:text),
       h3: parsed_response.search('h3').collect(&:text),
@@ -15,7 +15,7 @@ class PageContent < ApplicationRecord
 
   private
   def url_response
-    @url_response ||= Net::HTTP.get_response(URI.parse(url))
+    @url_response ||= Net::HTTP.get_response(URI(url))
   end
 
   def parsed_response
