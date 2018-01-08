@@ -8,9 +8,9 @@ Clone the repo:
 
     git clone REPO && cd REPO
     
-I used PostgreSQL for the DB, so make sure that is installed
+I used PostgreSQL for the DB and Nokogiri for HTML parsing, so make sure these have been run (On OSX) to ensure a setup goes smoothly.
 
-    brew install postgresql
+    xcode-select --install && brew install postgresql
 
 Install the libraries and setup the database:
 
