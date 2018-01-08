@@ -12,7 +12,7 @@ class V1::PageContentsControllerTest < ActionDispatch::IntegrationTest
     get lookup_v1_page_contents_path(url: page_contents(:facebook).url)
     assert_response :success
 
-    assert_equal JSON.parse(response.body), page_contents(:facebook).content, "Response is an expected JSON object"
+    assert_equal JSON.parse(response.body), page_contents(:facebook).content, 'Response is an expected JSON object'
   end
 
   def known_url
@@ -22,7 +22,7 @@ class V1::PageContentsControllerTest < ActionDispatch::IntegrationTest
   def known_content
     { 
       h1: ['Google'],
-      a: ['http://google.com/search', 'http://google.com/login']
+      a: ['https://google.com/search', 'https://google.com/login']
     }
   end
 
@@ -37,7 +37,7 @@ class V1::PageContentsControllerTest < ActionDispatch::IntegrationTest
   end
 
   test '.lookup - Will gracefully 404 when a URL does not exist' do
-    get lookup_v1_page_contents_path(url: 'http://www.mikerogers.io/i-dont-exist')
+    get lookup_v1_page_contents_path(url: 'https://www.mikerogers.io/i-dont-exist')
     assert_response :not_found
   end
 end

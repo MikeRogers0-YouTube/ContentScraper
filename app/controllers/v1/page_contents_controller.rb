@@ -10,7 +10,7 @@ class V1::PageContentsController < ApplicationController
     # it, which will attempt to index the pages content.
     return render json: @resource if @resource.persisted? || @resource.save
 
-    render :not_found
+    head :not_found
   end
 
   private
