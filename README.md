@@ -24,12 +24,12 @@ Turn on the rails server:
 
 List pages which have been scrapped
 
-    curl http://127.0.0.1:3000/1.0/page_contents
+    curl http://127.0.0.1:3000/1.0/pages
 
 Fetch content of a page
 
-    curl http://127.0.0.1:3000/1.0/page_contents/lookup?url=https%3A%2F%2Fmikerogers.io
-    curl http://127.0.0.1:3000/1.0/page_contents/lookup?url=http%3A%2F%2Fwww.bbc.co.uk%2Fnews%2Fav%2Fuk-england-cornwall-42591096%2Fmissing-cornwall-cat-winston-found-after-15-years
+    curl http://127.0.0.1:3000/1.0/pages/lookup?url=https%3A%2F%2Fmikerogers.io
+    curl http://127.0.0.1:3000/1.0/pages/lookup?url=http%3A%2F%2Fwww.bbc.co.uk%2Fnews%2Fav%2Fuk-england-cornwall-42591096%2Fmissing-cornwall-cat-winston-found-after-15-years
 
 
 ## Running the tests
