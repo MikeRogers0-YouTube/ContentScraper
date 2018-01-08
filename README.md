@@ -28,7 +28,8 @@ List pages which have been scrapped
 
 Fetch content of a page
 
-    curl -data="url=https://www.bbc.co.uk/news/av/uk-england-cornwall-42591096/missing-cornwall-cat-winston-found-after-15-years" http://127.0.0.1:3000/1.0/page_contents/lookup
+    curl http://127.0.0.1:3000/1.0/page_contents/lookup?url=https%3A%2F%2Fmikerogers.io
+    curl http://127.0.0.1:3000/1.0/page_contents/lookup?url=http%3A%2F%2Fwww.bbc.co.uk%2Fnews%2Fav%2Fuk-england-cornwall-42591096%2Fmissing-cornwall-cat-winston-found-after-15-years
 
 
 ## Running the tests
