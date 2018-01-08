@@ -1,6 +1,8 @@
 class V1::PageContentsController < ApplicationController
   def index
-    render json: PageContent.all
+    # Output all the models. `to_json` seemed suitable here. If you wanted to
+    # expand further, adding a jBuilder or ActiveModel::Serializer would be better.
+    render json: PageContent.all.to_json(only: [:url, :content])
   end
 
   def lookup

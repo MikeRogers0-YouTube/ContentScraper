@@ -35,3 +35,15 @@ Fetch content of a page
 ## Running the tests
 
     bundle exec rails test
+
+### Testing notes
+
+#### Integration test
+
+test/integration/v1/page_contents_test.rb - Covers a valid request, and edge cases such as 301 & 404 errors.
+
+#### Unit Test
+
+test/controllers/v1/page_contents_controller_test.rb
+
+
