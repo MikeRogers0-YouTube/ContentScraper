@@ -1,9 +1,9 @@
 # Read about fixtures at http://api.rubyonrails.org/classes/ActiveRecord/FixtureSet.html
 
-one:
-  url: MyString
-  content: 
+google:
+  url: https://www.google.com/
+  content: { h1: ['Google'], a: ['http://google.com/search', 'http://google.com/login'] }
 
-two:
-  url: MyString
-  content: 
+facebook:
+  url: https://www.facebook.com/
+  content: { h1: ['Facebook'], a: ['http://facebook.com/login'] }
