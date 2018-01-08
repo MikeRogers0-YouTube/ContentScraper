@@ -31,6 +31,6 @@ Fetch content of a page
     curl -data="url=https://www.bbc.co.uk/news/av/uk-england-cornwall-42591096/missing-cornwall-cat-winston-found-after-15-years" http://127.0.0.1:3000/1.0/page_contents
 
 
-## Running the specs
+## Running the tests
 
     bundle exec rails test
